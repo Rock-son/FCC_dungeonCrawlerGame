@@ -1,0 +1,1825 @@
+<html><head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Roguelike Dungeon Crawler Game - FreeCodeCamp</title>
+  <link rel="prerender" href="https://www.dropbox.com">
+<link rel="prerender" href="https://www.dropbox.com/s/ht9g8mq5hnkm2dj/player1.png?dl=1">
+<link rel="prerender" href="https://www.dropbox.com/s/pd688byac20idys/player_p.png?dl=1">
+<link rel="prerender" href="
+https://www.dropbox.com/s/j8y7znjtfhk2pux/chest.png?dl=1">
+<link rel="prerender" href="
+https://www.dropbox.com/s/g82htet08ppyzh0/firstAid.png?dl=1">
+<link rel="prerender" href="https://www.dropbox.com/s/ys31xgjxedhot1x/key.png?dl=1">
+<link rel="prerender" href="
+https://www.dropbox.com/s/3mkun98f5jv5wu5/pavement.png?dl=1">
+<link rel="prerender" href="
+https://www.dropbox.com/s/5t42ebv2j7gfzsj/bottom_pavement.png?dl=1">
+<link rel="prerender" href="https://www.dropbox.com/s/pnyxhk38wy9uu0j/left_pavement.png?dl=1">
+<link rel="prerender" href="https://www.dropbox.com/s/iqdcss5lcafborp/right_pavement.png?dl=1">
+<link rel="prerender" href="https://www.dropbox.com/s/j0m3gqxhrlfi6ni/top_watercorr.png?dl=1">
+<link rel="prerender" href="
+https://www.dropbox.com/s/1clca4qdhdqydu0/vertical_waterfall.png?dl=1">
+<link rel="prerender" href="https://www.dropbox.com/s/u6ix5qkma8tb6bd/barrel.png?dl=1">
+<link rel="prerender" href="
+https://www.dropbox.com/s/ycxdyi6kdwaijc8/3barrels.png?dl=1">
+  
+  
+  <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Lato">
+
+      <style>
+      *::after, *::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: black;
+  background-size: cover;
+}
+
+#main {
+  margin-left: 13%;
+  width: 75%;
+  height: 70%;
+}
+
+#hub ._key {
+  background: url("https://www.dropbox.com/s/ja9fe4e8xr4nq8s/key.png?dl=1") no-repeat scroll center center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  margin-left: -11%;
+  margin-top: 210px;
+}
+
+#prefetch {
+  position: absolute;
+  top: -550px;
+  left: -550px;
+  width: 140px;
+  height: 140px;
+  overflow: auto;
+}
+#prefetch ._firstAid {
+  background: url(https://www.dropbox.com/s/qni34pgp5ufiyy2/firstAid1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._key {
+  background: url(https://www.dropbox.com/s/ja9fe4e8xr4nq8s/key.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._openDoor {
+  background: url(https://www.dropbox.com/s/nt5id8pfk33zevf/open_door.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._Hunting_knife {
+  background: url(https://www.dropbox.com/s/t4wzxk2fg5bvidt/knife1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._Fast_nunchak {
+  background: url(https://www.dropbox.com/s/tl10b5eiz6pgayb/nunchaku.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._Deadly_shuriken {
+  background: url(https://www.dropbox.com/s/e9n6a5lhq2obwkf/shuriken.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._Bloody_katana {
+  background: url(https://www.dropbox.com/s/p5ulvmjuxuxbxd5/katana.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._axeEn {
+  background: url(https://www.dropbox.com/s/pd688byac20idys/axe_en.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._redEn {
+  background: url(https://www.dropbox.com/s/c90qwoa5o3htlmp/red_en.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._blueEn {
+  background: url(https://www.dropbox.com/s/01xlt3kkttkrn7o/blue_en.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._greenEn {
+  background: url(https://www.dropbox.com/s/tfatmi9lu2st5oo/greenEn.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._boss {
+  background: url(https://www.dropbox.com/s/ftx7we0od1rf92r/dragon.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._tombStone {
+  background: url(https://www.dropbox.com/s/n2o49w4yv1qnfjk/tombStone.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._grates {
+  background: url(https://www.dropbox.com/s/6gkst9h967sip4p/grates.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._gratesR {
+  background: url(https://www.dropbox.com/s/kws0krf9otsb6nb/gratesR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._gratesL {
+  background: url(https://www.dropbox.com/s/z5v27zarcb1keyy/gratesL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._gratesBL {
+  background: url(https://www.dropbox.com/s/0v60vr0taqquwhh/gratesBL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._gratesBR {
+  background: url(https://www.dropbox.com/s/uxqhy13qzzzt92r/gratesBR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._ladder {
+  background: url(https://www.dropbox.com/s/lb1ppvljb63o0z5/ladder1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._lockedDoor {
+  background: url(https://www.dropbox.com/s/whrfrr0x89ncsx9/locked_door.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._waterCorrVert {
+  background: url(https://www.dropbox.com/s/j0m3gqxhrlfi6ni/vert_watercorr.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._crate {
+  background: url(https://www.dropbox.com/s/r6qoz51cs6la9zj/crate.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._waterfallVert {
+  background: url(https://www.dropbox.com/s/1clca4qdhdqydu0/vertical_waterfall.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._waterPatch {
+  background: url(https://www.dropbox.com/s/bzomtqcl64fvxk5/waterPatch.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._waterIslet {
+  background: url(https://www.dropbox.com/s/8cfh5c83lt542o2/waterIslet.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._pavB {
+  background: url(https://www.dropbox.com/s/34v5nyko5gtsza9/pavB1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._stBridgeBL {
+  background: url(https://www.dropbox.com/s/ig6887azsn0ve8o/stBridgeBL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._stBridgeBR {
+  background: url(https://www.dropbox.com/s/7y7p5wb47nxpbh3/stBridgeBR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._stBridgeTL {
+  background: url(https://www.dropbox.com/s/qxp2psq8d99d630/stBridgeTL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._stBridgeTR {
+  background: url(https://www.dropbox.com/s/synjsy689tdhzjs/stBridgeTR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+#prefetch ._lava {
+  background: url(https://www.dropbox.com/s/rqhujh6um9imaqg/lava.gif?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+
+img.appPicture {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  margin-left: -1000px;
+  margin-top: -1000px;
+}
+
+h1 {
+  font-weight: 700;
+  font-variant: small-caps;
+  font-style: oblique;
+  letter-spacing: -5px;
+  margin: 1% 0 1% 11.5%;
+  font-size: 3em;
+  color: #bababa;
+  text-align: center;
+  width: 85%;
+  text-shadow: 1px 1px gold, 1px 1px 3px gold, 1px 1px 25px red;
+}
+
+#ftw {
+  position: absolute;
+  width: 50%;
+  font-size: 2em;
+  font-weight: 700;
+  padding: 10px 0px;
+  font-family: Colibri, sans-serif, Arial;
+  background-color: green;
+  color: white;
+  text-align: center;
+  border-radius: 1em;
+  margin: 4% auto;
+  border-radius: 1em;
+  top: 0;
+  left: 8%;
+  right: 0;
+  opacity: 0;
+  text-shadow: 1px 1px black, 1px 1px 3px black, 1px 1px 25px white;
+  -webkit-transition: opacity 0.8s;
+  -moz-transition: opacity 0.8s;
+  -ms-transition: opacity 0.8s;
+}
+
+#ftl {
+  position: absolute;
+  width: 50%;
+  font-size: 2em;
+  font-weight: 700;
+  padding: 10px 0px;
+  font-family: Colibri, sans-serif, Arial;
+  color: white;
+  background-color: red;
+  text-align: center;
+  margin: 4% auto;
+  border-radius: 1em;
+  top: 0;
+  left: 8%;
+  right: 0;
+  opacity: 0;
+  text-shadow: 1px 1px black, 1px 1px 3px black, 1px 1px 25px white;
+  -webkit-transition: opacity 0.8s;
+  -moz-transition: opacity 0.8s;
+  -ms-transition: opacity 0.8s;
+}
+
+.dataContainer {
+  margin: 5px 2px 0 0;
+  display: inline-block;
+}
+
+.playerBar {
+  width: 115%;
+  margin-left: -16%;
+}
+
+.enemyHub {
+  overflow: auto;
+  width: 100%;
+  height: 5vh;
+  margin-left: -16%;
+}
+
+.hubData {
+  display: inline-block;
+  width: 120px;
+  padding-right: 10px;
+  font-weight: 700;
+  font-variant: small-caps;
+  font-size: 17px;
+  font-size: 20px;
+  background-color: darkred;
+  border: 1px solid grey;
+  border-right: none;
+}
+.hubData.player {
+  border: 2px solid orange;
+  background-color: darkgreen;
+  color: gold;
+}
+
+.hubBar {
+  display: inline-block;
+  border: 1px solid grey;
+  text-align: center;
+  font-style: oblique;
+  color: #eee;
+  width: 15%;
+  font-weight: 700;
+  font-variant: small-caps;
+  font-size: 20px;
+  text-shadow: 0 1px 5px grey, 1px 2px black, 1px 1px white;
+  -webkit-border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  -ms-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+.hubBar.player {
+  border: 2px solid orange;
+}
+
+/*Toggle button
+/*************************************************************************************/
+#main .toggleBtn {
+  position: absolute;
+  margin-top: 300px;
+  margin-left: -12%;
+}
+
+#main .directionsBtn {
+  position: absolute;
+  margin-top: 380px;
+  margin-left: -12%;
+}
+
+@media screen and (max-width: 720px) {
+  #main button {
+    width: 100px;
+    height: 100px;
+  }
+}
+#main button {
+  width: 10%;
+  height: 55px;
+  min-width: 120px;
+  background-color: grey;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  border: 1px solid orange;
+  cursor: pointer;
+  color: gold;
+  font-size: 0.85em;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #466341;
+  font-style: oblique;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px black, 1px 1px 3px black, 1px 1px 5px red;
+  -webkit-transition: background-color 0.4s, color 0.3s;
+  -moz-transition: background-color 0.4s, color 0.3s;
+  transition: background-color 0.4s, color 0.3s;
+}
+
+#main button:hover {
+  background-color: white;
+  text-shadow: 1px 1px black, 1px 1px 3px black, 1px 1px 5px red;
+  color: green;
+}
+
+#main button:active {
+  background-color: grey;
+  color: white;
+}
+
+/* XP bar
+/*************************************************************************************/
+.XPBar {
+  margin: 1% auto 0 auto;
+  padding: 0;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-variant: small-caps;
+  text-align: center;
+  border: 1px solid gold;
+  border-radius: 15px 15px 0 0;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.XPBar:before {
+  content: attr(data-before);
+  font-size: 20px;
+  color: black;
+  margin-left: -80px;
+  margin-top: -29px;
+  position: absolute;
+  text-align: center;
+  width: 200px;
+  border: 1px solid gold;
+  border-radius: 55px;
+}
+.XPBar[data-before="Player level: 1"]:before {
+  background-color: white;
+  color: black;
+}
+.XPBar[data-before="Player level: 2"]:before {
+  background-color: yellow;
+  color: black;
+}
+.XPBar[data-before="Player level: 3"]:before {
+  background-color: orange;
+  color: black;
+}
+.XPBar[data-before="Player level: 4"]:before {
+  background-color: green;
+  color: black;
+}
+.XPBar[data-before="Player level: 5"]:before {
+  background-color: blue;
+  color: white;
+}
+.XPBar[data-before="Player level: 6"]:before {
+  background-color: purple;
+  color: white;
+}
+.XPBar[data-before="Player level: 7"]:before {
+  background-color: red;
+  color: black;
+}
+.XPBar[data-before="Player level: 8"]:before {
+  background-color: brown;
+  color: white;
+}
+.XPBar[data-before="Player level: 9"]:before {
+  background-color: #1a1a00;
+  color: white;
+}
+.XPBar:after {
+  position: absolute;
+  width: 300px;
+  height: 20px;
+  color: white;
+  content: attr(data-after);
+  font-variant: small-caps;
+  font-style: oblique;
+  font-size: 1em;
+  margin-top: -55px;
+  margin-left: -165px;
+  letter-spacing: 5px;
+  text-shadow: 1px 1px gold, 1px 1px 3px gold, 1px 1px 25px red;
+}
+
+/*weapon damage indicators 
+/*************************************************************************************/
+table {
+  position: absolute;
+  margin-left: -12%;
+  width: 12%;
+  border: 1px solid grey;
+  font-family: Roboto, sans-serif, Arial;
+  font-size: 14px;
+  width: 10%;
+}
+table.weapon {
+  margin-top: 20px;
+}
+table.attackData {
+  margin-top: 120px;
+}
+
+th, td {
+  white-space: nowrap;
+  border: 1px solid grey;
+  text-align: center;
+  padding: 5px;
+  color: darkgreen;
+  font-weight: 700;
+  background-color: orange;
+  text-shadow: -1px -1px lightgrey, 1px -1px gold, 1px -1px white, 1px 1px black;
+}
+th ._50, td ._50 {
+  background: url(https://www.dropbox.com/s/t4wzxk2fg5bvidt/knife1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 25s infinite linear;
+  -moz-animation: rotate 25s infinite linear;
+  -ms-animation: rotate 25s infinite linear;
+}
+th ._51, td ._51 {
+  background: url(https://www.dropbox.com/s/tl10b5eiz6pgayb/nunchaku.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 25s infinite linear;
+  -moz-animation: rotate 25s infinite linear;
+  -ms-animation: rotate 25s infinite linear;
+}
+th ._52, td ._52 {
+  background: url(https://www.dropbox.com/s/e9n6a5lhq2obwkf/shuriken.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 25s infinite linear;
+  -moz-animation: rotate 25s infinite linear;
+  -ms-animation: rotate 25s infinite linear;
+}
+th ._53, td ._53 {
+  background: url(https://www.dropbox.com/s/p5ulvmjuxuxbxd5/katana.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 25s infinite linear;
+  -moz-animation: rotate 25s infinite linear;
+  -ms-animation: rotate 25s infinite linear;
+}
+
+th {
+  color: white;
+  font-weight: 700;
+  background-color: darkgreen;
+  text-shadow: none;
+  font-variant: small-caps;
+}
+
+/*container
+/*************************************************************************************/
+.cont {
+  font-size: 0;
+  padding: 0;
+  border: 5px solid white;
+  border-radius: 0 0 15px 15px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.cell {
+  display: inline-block;
+  font-size: 14px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.cell._1 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/34v5nyko5gtsza9/pavB1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._2 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/pnyxhk38wy9uu0j/left_pavement.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._3 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/iqdcss5lcafborp/right_pavement.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._4 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/1wlkbfm6gqquzg9/t_r_pavm.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._5 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/xhepif6ivklckf1/b_r_pavm.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._6 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/14xrjyxmx5aaq2k/b_l_pavm.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._7 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/z8hwobon02h2lrf/t_l_pavm.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._8 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/aea38so6fgszntb/top_pavement.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._9 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/3mkun98f5jv5wu5/pavement.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._1000 {
+  background: url("https://www.dropbox.com/s/rqhujh6um9imaqg/lava.gif?dl=1") no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._0 {
+  background-color: black;
+}
+.cell._10 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/7ktwpfahs12pkxf/water.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._10._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._11 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/b36cnflohxombvb/water_left.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._11._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._12 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/nier2omstehn8pe/water_right.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._12._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._13 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/40aig58oi1mw6f7/water_right_bottm.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._13._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._14 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/scbt0cajr9osp9j/water_right_top.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._14._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._15 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/8f0zx7qb31zhboy/water_left_top.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._15._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._16 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/wkb57y3hhngal81/water_left_bottm.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._16._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._17 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/j0m3gqxhrlfi6ni/vert_watercorr.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._17._100:before {
+  margin-top: -2px;
+  margin-left: -10px;
+}
+.cell._18 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/1clca4qdhdqydu0/vertical_waterfall.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._18._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._19 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/frmapfmoktg4nfu/horizontal_watercorr.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._19._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._20 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/ve2d5qsdh21f3km/waterGrateOpen.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._20._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._21 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/wh8m5fwvy5lu238/waterGrateClosed.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._21._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._22 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/7crnxmr07s9ocuj/water_top.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._22._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._23 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/pfxpcgh88ng9gva/water_btm.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._23._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._49 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/n2o49w4yv1qnfjk/tombStone.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._49._100:before {
+  margin-top: -10px;
+  margin-left: -5px;
+}
+.cell._55 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/r6qoz51cs6la9zj/crate.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._55._100:before {
+  margin-top: -10px;
+  margin-left: -5px;
+}
+.cell._56 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/bzomtqcl64fvxk5/waterPatch.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._56._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._57 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/8cfh5c83lt542o2/waterIslet.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._57._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._58 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/rqhujh6um9imaqg/lava.gif?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px;
+}
+.cell._58._100:before {
+  margin-top: -3px;
+  margin-left: -5px;
+}
+.cell._50:before {
+  width: inherit;
+  height: inherit;
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/t4wzxk2fg5bvidt/knife1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 5s infinite linear;
+  -moz-animation: rotate 5s infinite linear;
+  -ms-animation: rotate 5s infinite linear;
+}
+.cell._51:before {
+  width: inherit;
+  height: inherit;
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/tl10b5eiz6pgayb/nunchaku.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 5s infinite linear;
+  -moz-animation: rotate 5s infinite linear;
+  -ms-animation: rotate 5s infinite linear;
+}
+.cell._52:before {
+  width: inherit;
+  height: inherit;
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/e9n6a5lhq2obwkf/shuriken.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 5s infinite linear;
+  -moz-animation: rotate 5s infinite linear;
+  -ms-animation: rotate 5s infinite linear;
+}
+.cell._53:before {
+  width: inherit;
+  height: inherit;
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/p5ulvmjuxuxbxd5/katana.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: rotate 5s infinite linear;
+  -moz-animation: rotate 5s infinite linear;
+  -ms-animation: rotate 5s infinite linear;
+}
+.cell._31:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/u6ix5qkma8tb6bd/barrel.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+}
+.cell._32:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/ycxdyi6kdwaijc8/3barrels.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: 30px;
+  height: 20px;
+  margin-left: -5px;
+}
+.cell._33:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/whrfrr0x89ncsx9/locked_door.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._34:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/nt5id8pfk33zevf/open_door.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._35:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/j8y7znjtfhk2pux/chest.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  -webkit-animation: glow 2s infinite;
+  -moz-animation: glow 2s infinite;
+  -ms-animation: glow 2s infinite;
+  width: 15px;
+  height: 15px;
+}
+.cell._36:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/qni34pgp5ufiyy2/firstAid1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._37:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/ja9fe4e8xr4nq8s/key.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+}
+.cell._43:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/6gkst9h967sip4p/grates.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._44:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/z5v27zarcb1keyy/gratesL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._45:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/kws0krf9otsb6nb/gratesR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._46:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/uxqhy13qzzzt92r/gratesBR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._47:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/0v60vr0taqquwhh/gratesBL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._48:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/lb1ppvljb63o0z5/ladder1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._54:before {
+  content: " ";
+  position: absolute;
+  background: url(https://www.dropbox.com/s/pmk83vjxjj5n47b/torch1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.cell._38 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/c63c867mjocs2uo/top_stairs.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._38._100:before {
+  margin-top: -14px;
+  margin-left: -10px;
+}
+.cell._39 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/srfxuewbskxa5zf/left_stairs.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._39._100:before {
+  margin-top: -8px;
+  margin-left: -5px;
+}
+.cell._40 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/ylhrrkhrze7pe7p/right_stairs.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._40._100:before {
+  margin-top: -8px;
+  margin-left: -5px;
+}
+.cell._25 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/2hryssprn1ehuhp/stBridgeVer.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._26 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/bljg78c68smwajx/stBridgeHor.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._27 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/ig6887azsn0ve8o/stBridgeBL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._28 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/7y7p5wb47nxpbh3/stBridgeBR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._29 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/qxp2psq8d99d630/stBridgeTL.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._30 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/synjsy689tdhzjs/stBridgeTR.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._41 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/34v5nyko5gtsza9/pavB1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._41._100:before {
+  margin-top: -10px;
+  margin-left: -5px;
+}
+.cell._42 {
+  width: inherit;
+  height: inherit;
+  background: url(https://www.dropbox.com/s/aea38so6fgszntb/top_pavement.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+}
+.cell._42._100:before {
+  margin-top: -10px;
+  margin-left: -5px;
+}
+@media (max-width: 1000px) {
+  .cell._250:before {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media (min-width: 1001px) {
+  .cell._250:before {
+    width: 30px;
+    height: 30px;
+  }
+}
+.cell._250:before {
+  content: " ";
+  background: url(https://www.dropbox.com/s/pd688byac20idys/axe_en.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  position: absolute;
+  margin-top: -5px;
+  margin-left: -5px;
+  transform: rotateY(30deg);
+}
+.cell._250.damageRight:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToRight 0.5s;
+  -moz-animation: fontToRight 0.5s;
+  -ms-animation: fontToRight 0.5s;
+}
+.cell._250.damageLeft:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToLeft 0.5s;
+  -moz-animation: fontToLeft 0.5s;
+  -ms-animation: fontToLeft 0.5s;
+}
+@media (max-width: 1000px) {
+  .cell._251:before {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media (min-width: 1001px) {
+  .cell._251:before {
+    width: 30px;
+    height: 30px;
+  }
+}
+.cell._251:before {
+  content: " ";
+  background: url(https://www.dropbox.com/s/tfatmi9lu2st5oo/greenEn.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  position: absolute;
+  margin-top: -5px;
+  margin-left: -5px;
+  transform: rotateY(30deg);
+}
+.cell._251.damageRight:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToRight 0.5s;
+  -moz-animation: fontToRight 0.5s;
+  -ms-animation: fontToRight 0.5s;
+}
+.cell._251.damageLeft:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToLeft 0.5s;
+  -moz-animation: fontToLeft 0.5s;
+  -ms-animation: fontToLeft 0.5s;
+}
+@media (max-width: 1000px) {
+  .cell._252:before {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media (min-width: 1001px) {
+  .cell._252:before {
+    width: 30px;
+    height: 30px;
+  }
+}
+.cell._252:before {
+  content: " ";
+  background: url(https://www.dropbox.com/s/01xlt3kkttkrn7o/blue_en.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  position: absolute;
+  margin-top: -5px;
+  margin-left: -5px;
+  transform: rotateY(30deg);
+}
+.cell._252.damageRight:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToRight 0.5s;
+  -moz-animation: fontToRight 0.5s;
+  -ms-animation: fontToRight 0.5s;
+}
+.cell._252.damageLeft:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToLeft 0.5s;
+  -moz-animation: fontToLeft 0.5s;
+  -ms-animation: fontToLeft 0.5s;
+}
+@media (max-width: 1000px) {
+  .cell._253:before {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media (min-width: 1001px) {
+  .cell._253:before {
+    width: 30px;
+    height: 30px;
+  }
+}
+.cell._253:before {
+  content: " ";
+  background: url(https://www.dropbox.com/s/c90qwoa5o3htlmp/red_en.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  position: absolute;
+  margin-top: -5px;
+  margin-left: -5px;
+  transform: rotateY(30deg);
+}
+.cell._253.damageRight:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToRight 0.5s;
+  -moz-animation: fontToRight 0.5s;
+  -ms-animation: fontToRight 0.5s;
+}
+.cell._253.damageLeft:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -25px;
+  margin-left: 0px;
+  -webkit-animation: fontToLeft 0.5s;
+  -moz-animation: fontToLeft 0.5s;
+  -ms-animation: fontToLeft 0.5s;
+}
+@media (max-width: 1000px) {
+  .cell._254:before {
+    width: 80px;
+    height: 80px;
+  }
+}
+@media (min-width: 1001px) {
+  .cell._254:before {
+    width: 100px;
+    height: 100px;
+  }
+}
+.cell._254:before {
+  content: " ";
+  background: url(https://www.dropbox.com/s/ftx7we0od1rf92r/dragon.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  position: absolute;
+  margin-top: -55px;
+  margin-left: -55px;
+  transform: rotateY(30deg);
+}
+.cell._254.damageRight:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -65px;
+  margin-left: 0px;
+  -webkit-animation: bossFontToRight 0.5s;
+  -moz-animation: bossFontToRight 0.5s;
+  -ms-animation: bossFontToRight 0.5s;
+}
+.cell._254.damageLeft:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -65px;
+  margin-left: 0px;
+  -webkit-animation: bossFontToLeft 0.5s;
+  -moz-animation: bossFontToLeft 0.5s;
+  -ms-animation: bossFontToLeft 0.5s;
+}
+@media (max-width: 1000px) {
+  .cell._100:before {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media (min-width: 1001px) {
+  .cell._100:before {
+    width: 30px;
+    height: 30px;
+  }
+}
+.cell._100:before {
+  content: " ";
+  position: absolute;
+  margin-top: -5px;
+  margin-left: -5px;
+  background: url(https://www.dropbox.com/s/ht9g8mq5hnkm2dj/player1.png?dl=1) no-repeat scroll center center;
+  background-size: cover;
+  transform: rotateY(20deg);
+}
+.cell._100.damageRight:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -30px;
+  margin-left: -20px;
+  -webkit-animation: fontToRight 0.5s;
+  -moz-animation: fontToRight 0.5s;
+  -ms-animation: fontToRight 0.5s;
+}
+.cell._100.damageLeft:after {
+  position: absolute;
+  content: attr(data);
+  color: red;
+  font-weight: 300;
+  margin-top: -30px;
+  margin-left: -20px;
+  -webkit-animation: fontToLeft 0.5s;
+  -moz-animation: fontToLeft 0.5s;
+  -ms-animation: fontToLeft 0.5s;
+}
+.cell._100.bonus:after {
+  position: absolute;
+  content: attr(data);
+  color: green;
+  font-size: 0;
+  font-weight: 700;
+  margin-top: -35px;
+  margin-left: 0px;
+  -webkit-animation: assetFontToRight 0.5s;
+  -moz-animation: assetFontToRight 0.5s;
+  -ms-animation: assetFontToRight 0.5s;
+}
+.cell._100.foundAsset:after {
+  position: absolute;
+  content: attr(data);
+  color: gold;
+  font-size: 0;
+  font-weight: 700;
+  margin-top: -35px;
+  margin-left: 0px;
+  -webkit-animation: assetFontToRight 0.5s;
+  -moz-animation: assetFontToRight 0.5s;
+  -ms-animation: assetFontToRight 0.5s;
+}
+
+@-webkit-keyframes assetFontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+  }
+}
+@-moz-keyframes assetFontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+  }
+}
+@-o-keyframes assetFontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+  }
+}
+@keyframes assetFontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+  }
+}
+@-webkit-keyframes fontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@-moz-keyframes fontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@-o-keyframes fontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@keyframes fontToRight {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: 10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@-webkit-keyframes fontToLeft {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: -10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@-moz-keyframes fontToLeft {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: -10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@-o-keyframes fontToLeft {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: -10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@keyframes fontToLeft {
+  0% {
+    font-size: 20px;
+    margin-left: 0px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px 1px gold, 1px 1px 5px black;
+  }
+  100% {
+    font-size: 15px;
+    margin-left: -10px;
+    text-shadow: -1px -1px black, 1px -1px black, 1px -1px orange, 1px 1px 5px black;
+  }
+}
+@-webkit-keyframes bossFontToRight {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: 10px;
+    color: black;
+  }
+}
+@-moz-keyframes bossFontToRight {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: 10px;
+    color: black;
+  }
+}
+@-o-keyframes bossFontToRight {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: 10px;
+    color: black;
+  }
+}
+@keyframes bossFontToRight {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: 10px;
+    color: black;
+  }
+}
+@-webkit-keyframes bossFontToLeft {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: -10px;
+    color: black;
+  }
+}
+@-moz-keyframes bossFontToLeft {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: -10px;
+    color: black;
+  }
+}
+@-o-keyframes bossFontToLeft {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: -10px;
+    color: black;
+  }
+}
+@keyframes bossFontToLeft {
+  0% {
+    font-size: 30px;
+    margin-left: 0px;
+    color: black;
+  }
+  100% {
+    font-size: 22px;
+    margin-left: -10px;
+    color: black;
+  }
+}
+@-webkit-keyframes glow {
+  0% {
+    box-shadow: 0px -5px 8px gold;
+  }
+  50% {
+    box-shadow: 0px -5px 4px gold;
+  }
+  100% {
+    box-shadow: 0px -5px 8px gold;
+  }
+}
+@-moz-keyframes glow {
+  0% {
+    box-shadow: 0px -5px 8px gold;
+  }
+  50% {
+    box-shadow: 0px -5px 4px gold;
+  }
+  100% {
+    box-shadow: 0px -5px 8px gold;
+  }
+}
+@-o-keyframes glow {
+  0% {
+    box-shadow: 0px -5px 8px gold;
+  }
+  50% {
+    box-shadow: 0px -5px 4px gold;
+  }
+  100% {
+    box-shadow: 0px -5px 8px gold;
+  }
+}
+@keyframes glow {
+  0% {
+    box-shadow: 0px -5px 8px gold;
+  }
+  50% {
+    box-shadow: 0px -5px 4px gold;
+  }
+  100% {
+    box-shadow: 0px -5px 8px gold;
+  }
+}
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#instructions {
+  position: absolute;
+  left: -40%;
+  top: 19%;
+  width: 35%;
+  height: 80.5%;
+  color: white;
+  background-color: black;
+  border-radius: 15px;
+  border: 1px solid white;
+  overflow: auto;
+  z-index: 1000;
+  transition: all .3s ease-out;
+}
+#instructions.open {
+  left: 0;
+}
+#instructions h1 {
+  margin: 1% auto;
+}
+#instructions li {
+  font-family: 'Lato', sans-serif;
+}
+#instructions li span {
+  text-shadow: 1px 1px green, 1px 1px 3px gold, 1px 1px 25px red;
+}
+#instructions .firstAid {
+  background: url("https://www.dropbox.com/s/qni34pgp5ufiyy2/firstAid1.png?dl=1") no-repeat scroll center center;
+  background-size: cover;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-color: none;
+  transition: background-color 0.5s;
+}
+#instructions .knife {
+  background: url("https://www.dropbox.com/s/t4wzxk2fg5bvidt/knife1.png?dl=1") no-repeat scroll center center;
+  background-size: cover;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-color: darkgrey;
+  transition: background-color 0.5s;
+}
+#instructions .nunchak {
+  background: url("https://www.dropbox.com/s/tl10b5eiz6pgayb/nunchaku.png?dl=1") no-repeat scroll center center;
+  background-size: cover;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-color: darkgrey;
+  transition: background-color 0.5s;
+}
+#instructions .shuriken {
+  background: url("https://www.dropbox.com/s/e9n6a5lhq2obwkf/shuriken.png?dl=1") no-repeat scroll center center;
+  background-size: cover;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-color: darkgrey;
+  transition: background-color 0.5s;
+}
+#instructions .katana {
+  background: url("https://www.dropbox.com/s/p5ulvmjuxuxbxd5/katana.png?dl=1") no-repeat scroll center center;
+  background-size: cover;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-color: darkgrey;
+  transition: background-color 0.5s;
+}
+#instructions .key {
+  background: url("https://www.dropbox.com/s/ja9fe4e8xr4nq8s/key.png?dl=1") no-repeat scroll center center;
+  background-size: cover;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-color: none;
+  transition: background-color 0.5s;
+}
+#instructions #insert {
+  position: relative;
+  margin-top: 100px;
+}
+#instructions .directionsBtn {
+  position: absolute;
+  padding: 8px 20px;
+  bottom: 15px;
+  right: 15px;
+  border-radius: 5px;
+  background-color: #ca3c3c;
+  border: none;
+  color: gold;
+  text-shadow: 1px 1px black, 1px 1px 3px black, 1px 1px 10px white;
+  font-size: 0.95em;
+  font-weight: 700;
+  font-variant: all-small-caps;
+  font-style: oblique;
+  transition: background-color 0.2s ease-out;
+}
+#instructions .directionsBtn:hover {
+  background-color: darkred;
+  cursor: pointer;
+}
+
+footer {
+  position: absolute;
+  color: white;
+  font-size: 0.5em;
+  bottom: 0;
+  margin-left: 55%;
+}
+footer a {
+  color: white;
+  text-shadow: 0px 1px black, 0px 1px 1px black, 1px 1px 5px gold;
+}
+
+    </style>
+
+  
+  
+  
+  
+</head>
+
+<body translate="no" data-pinterest-extension-installed="ff1.37.9">
+
+  
+<ul id="prefetch">
+  <li class="_firstAid"></li>
+  <li class="_key"></li>
+  <li class="_openDoor"></li>
+  <li class="_Hunting_knife"></li>
+  <li class="_Fast_nunchak"></li>
+  <li class="_Deadly_shuriken"></li>
+  <li class="_Bloody_katana"></li>
+  <li class="_redEn"></li>
+  <li class="_blueEn"></li>
+  <li class="_greenEn"></li>
+  <li class="_boss"></li>
+  <li class="_tombStone"></li>
+  <li class="_grates"></li>
+  <li class="_gratesR"></li>
+  <li class="_gratesL"></li>
+  <li class="_gratesBL"></li>
+  <li class="_gratesBR"></li>
+  <li class="_ladder"></li>
+  <li class="_lockedDoor"></li>
+  <li class="_waterCorrVert"></li>
+  <li class="_pavB"></li>
+  <li class="_stBridgeBL"></li>
+  <li class="_stBridgeBR"></li>
+  <li class="_stBridgeTL"></li>
+  <li class="_stBridgeTR"></li>
+  <li class="_lava"></li>
+</ul><img src="https://www.dropbox.com/s/trvfppnb2s3ovbv/titleImage.png?dl=1" alt="imageOfThisApp.jpg" class="appPicture">
+<h1>Dungeon Crawler</h1>
+<div id="ftw">Congratulations You Won!</div>
+<div id="ftl">Sorry, You Lost!</div>
+<div id="main"><div data-reactroot=""><div id="hub"><div class="playerBar"><div class="hubData player">Player life: </div><div class="hubBar player" style="width: 500px; box-shadow: 500px 0px 0px 0px darkgreen inset;"> 100</div></div><div class="enemyHub"></div><table class="weapon"><tr class="weaponTitle"><th colspan="2">Weapon [damage]:</th></tr><tr class="weaponData"><td><div class="_49" style="width: 25px; height: 25px;"></div></td><td><!-- react-text: 14 -->Bare fists<!-- /react-text --><span style="color: black;"><!-- react-text: 16 --> <!-- /react-text --><!-- react-text: 17 --> [ 4 ] <!-- /react-text --><!-- react-text: 18 --> <!-- /react-text --></span></td></tr></table><table class="attackData" data=""><tr class="weaponTitle"><th>min attack damage: </th></tr><tr class="weaponData"><td style="color: black;">4</td></tr></table><div class="_key" style="display: none;"></div></div><button class="toggleBtn">Toggle dark</button><button class="directionsBtn">Instructions</button><div class="XPBar" data-before="Player level: 1" data-after="Dungeon Level: 1" style="color: green; width: 1543px; box-shadow: 0px 0px 0px 0px white inset;">0 XP</div><div id="c" class="cont" tabindex="1" style="width: 1536px;"><div id="_row0" class="rowGrid"><div id="_59" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_60" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_61" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_62" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_63" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_64" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_65" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_66" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_67" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_68" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_69" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_70" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_71" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_72" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_73" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_74" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_75" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_76" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_77" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_78" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_79" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_80" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_81" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_82" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_83" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_84" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_85" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_86" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_87" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_88" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_89" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_90" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_91" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_92" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_93" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_94" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_95" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_96" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_97" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_98" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_99" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_100" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_101" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_102" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_103" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_104" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_105" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_106" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_107" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_108" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_109" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_110" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_111" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_112" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_113" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_114" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_115" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_116" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_117" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_118" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_119" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row1" class="rowGrid"><div id="_179" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_180" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_181" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_182" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_183" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_184" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_185" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_186" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_187" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_188" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_189" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_190" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_191" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_192" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_193" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_194" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_195" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_196" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_197" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_198" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_199" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_200" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_201" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_202" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_203" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_204" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_205" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_206" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_207" class="cell _7" style="width: 25.14px; height: 25.14px;"></div><div id="_208" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_209" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_210" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_211" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_212" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_213" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_214" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_215" class="cell _8" style="width: 25.14px; height: 25.14px;"></div><div id="_216" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_217" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_218" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_219" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_220" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_221" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_222" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_223" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_224" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_225" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_226" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_227" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_228" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_229" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_230" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_231" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_232" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_233" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_234" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_235" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_236" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_237" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_238" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_239" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row2" class="rowGrid"><div id="_299" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_300" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_301" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_302" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_303" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_304" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_305" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_306" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_307" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_308" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_309" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_310" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_311" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_312" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_313" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_314" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_315" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_316" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_317" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_318" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_319" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_320" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_321" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_322" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_323" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_324" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_325" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_326" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_327" class="cell _2" style="width: 25.14px; height: 25.14px;"></div><div id="_328" class="cell _9 _54" style="width: 25.14px; height: 25.14px;"></div><div id="_329" class="cell _9 _100" style="width: 25.14px; height: 25.14px;"></div><div id="_330" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_331" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_332" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_333" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_334" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_335" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_336" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_337" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_338" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_339" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_340" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_341" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_342" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_343" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_344" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_345" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_346" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_347" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_348" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_349" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_350" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_351" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_352" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_353" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_354" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_355" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_356" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_357" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_358" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_359" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row3" class="rowGrid"><div id="_419" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_420" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_421" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_422" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_423" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_424" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_425" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_426" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_427" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_428" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_429" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_430" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_431" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_432" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_433" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_434" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_435" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_436" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_437" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_438" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_439" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_440" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_441" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_442" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_443" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_444" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_445" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_446" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_447" class="cell _2" style="width: 25.14px; height: 25.14px;"></div><div id="_448" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_449" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_450" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_451" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_452" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_453" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_454" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_455" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_456" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_457" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_458" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_459" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_460" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_461" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_462" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_463" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_464" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_465" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_466" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_467" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_468" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_469" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_470" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_471" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_472" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_473" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_474" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_475" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_476" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_477" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_478" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_479" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row4" class="rowGrid"><div id="_539" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_540" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_541" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_542" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_543" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_544" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_545" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_546" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_547" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_548" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_549" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_550" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_551" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_552" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_553" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_554" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_555" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_556" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_557" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_558" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_559" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_560" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_561" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_562" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_563" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_564" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_565" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_566" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_567" class="cell _2" style="width: 25.14px; height: 25.14px;"></div><div id="_568" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_569" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_570" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_571" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_572" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_573" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_574" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_575" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_576" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_577" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_578" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_579" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_580" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_581" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_582" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_583" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_584" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_585" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_586" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_587" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_588" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_589" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_590" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_591" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_592" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_593" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_594" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_595" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_596" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_597" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_598" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_599" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row5" class="rowGrid"><div id="_659" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_660" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_661" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_662" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_663" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_664" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_665" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_666" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_667" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_668" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_669" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_670" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_671" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_672" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_673" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_674" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_675" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_676" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_677" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_678" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_679" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_680" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_681" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_682" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_683" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_684" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_685" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_686" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_687" class="cell _2" style="width: 25.14px; height: 25.14px;"></div><div id="_688" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_689" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_690" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_691" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_692" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_693" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_694" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_695" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_696" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_697" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_698" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_699" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_700" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_701" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_702" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_703" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_704" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_705" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_706" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_707" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_708" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_709" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_710" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_711" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_712" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_713" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_714" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_715" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_716" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_717" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_718" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_719" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row6" class="rowGrid"><div id="_779" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_780" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_781" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_782" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_783" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_784" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_785" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_786" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_787" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_788" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_789" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_790" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_791" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_792" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_793" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_794" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_795" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_796" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_797" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_798" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_799" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_800" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_801" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_802" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_803" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_804" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_805" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_806" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_807" class="cell _2" style="width: 25.14px; height: 25.14px;"></div><div id="_808" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_809" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_810" class="cell _55" style="width: 25.14px; height: 25.14px;"></div><div id="_811" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_812" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_813" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_814" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_815" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_816" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_817" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_818" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_819" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_820" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_821" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_822" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_823" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_824" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_825" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_826" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_827" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_828" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_829" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_830" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_831" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_832" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_833" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_834" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_835" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_836" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_837" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_838" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_839" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row7" class="rowGrid"><div id="_899" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_900" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_901" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_902" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_903" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_904" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_905" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_906" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_907" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_908" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_909" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_910" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_911" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_912" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_913" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_914" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_915" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_916" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_917" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_918" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_919" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_920" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_921" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_922" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_923" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_924" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_925" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_926" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_927" class="cell _2" style="width: 25.14px; height: 25.14px;"></div><div id="_928" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_929" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_930" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_931" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_932" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_933" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_934" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_935" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_936" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_937" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_938" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_939" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_940" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_941" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_942" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_943" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_944" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_945" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_946" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_947" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_948" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_949" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_950" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_951" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_952" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_953" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_954" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_955" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_956" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_957" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_958" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_959" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row8" class="rowGrid"><div id="_1019" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1020" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1021" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1022" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1023" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1024" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1025" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1026" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1027" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1028" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1029" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1030" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1031" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1032" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1033" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1034" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1035" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1036" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1037" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1038" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1039" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1040" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1041" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1042" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1043" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1044" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1045" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1046" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1047" class="cell _2" style="width: 25.14px; height: 25.14px;"></div><div id="_1048" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_1049" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_1050" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_1051" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_1052" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_1053" class="cell _9" style="width: 25.14px; height: 25.14px;"></div><div id="_1054" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1055" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1056" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1057" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1058" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1059" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1060" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1061" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1062" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1063" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1064" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1065" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1066" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1067" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1068" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1069" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1070" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1071" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1072" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1073" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1074" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1075" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1076" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1077" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1078" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1079" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row9" class="rowGrid"><div id="_1139" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1140" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1141" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1142" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1143" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1144" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1145" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1146" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1147" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1148" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1149" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1150" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1151" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1152" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1153" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1154" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1155" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1156" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1157" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1158" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1159" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1160" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1161" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1162" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1163" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1164" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1165" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1166" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1167" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1168" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1169" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1170" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1171" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1172" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1173" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1174" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1175" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1176" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1177" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1178" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1179" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1180" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1181" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1182" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1183" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1184" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1185" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1186" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1187" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1188" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1189" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1190" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1191" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1192" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1193" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1194" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1195" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1196" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1197" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1198" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1199" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row10" class="rowGrid"><div id="_1259" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1260" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1261" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1262" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1263" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1264" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1265" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1266" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1267" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1268" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1269" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1270" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1271" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1272" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1273" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1274" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1275" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1276" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1277" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1278" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1279" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1280" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1281" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1282" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1283" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1284" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1285" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1286" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1287" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1288" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1289" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1290" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1291" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1292" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1293" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1294" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1295" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1296" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1297" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1298" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1299" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1300" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1301" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1302" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1303" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1304" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1305" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1306" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1307" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1308" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1309" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1310" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1311" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1312" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1313" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1314" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1315" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1316" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1317" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1318" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1319" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row11" class="rowGrid"><div id="_1379" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1380" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1381" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1382" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1383" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1384" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1385" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1386" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1387" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1388" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1389" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1390" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1391" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1392" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1393" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1394" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1395" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1396" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1397" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1398" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1399" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1400" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1401" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1402" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1403" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1404" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1405" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1406" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1407" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1408" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1409" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1410" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1411" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1412" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1413" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1414" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1415" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1416" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1417" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1418" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1419" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1420" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1421" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1422" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1423" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1424" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1425" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1426" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1427" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1428" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1429" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1430" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1431" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1432" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1433" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1434" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1435" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1436" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1437" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1438" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1439" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row12" class="rowGrid"><div id="_1499" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1500" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1501" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1502" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1503" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1504" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1505" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1506" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1507" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1508" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1509" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1510" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1511" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1512" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1513" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1514" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1515" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1516" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1517" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1518" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1519" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1520" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1521" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1522" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1523" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1524" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1525" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1526" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1527" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1528" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1529" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1530" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1531" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1532" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1533" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1534" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1535" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1536" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1537" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1538" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1539" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1540" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1541" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1542" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1543" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1544" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1545" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1546" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1547" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1548" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1549" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1550" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1551" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1552" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1553" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1554" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1555" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1556" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1557" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1558" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1559" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row13" class="rowGrid"><div id="_1619" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1620" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1621" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1622" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1623" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1624" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1625" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1626" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1627" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1628" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1629" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1630" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1631" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1632" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1633" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1634" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1635" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1636" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1637" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1638" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1639" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1640" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1641" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1642" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1643" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1644" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1645" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1646" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1647" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1648" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1649" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1650" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1651" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1652" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1653" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1654" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1655" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1656" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1657" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1658" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1659" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1660" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1661" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1662" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1663" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1664" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1665" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1666" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1667" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1668" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1669" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1670" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1671" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1672" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1673" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1674" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1675" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1676" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1677" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1678" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1679" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row14" class="rowGrid"><div id="_1739" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1740" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1741" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1742" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1743" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1744" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1745" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1746" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1747" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1748" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1749" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1750" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1751" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1752" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1753" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1754" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1755" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1756" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1757" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1758" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1759" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1760" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1761" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1762" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1763" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1764" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1765" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1766" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1767" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1768" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1769" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1770" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1771" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1772" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1773" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1774" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1775" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1776" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1777" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1778" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1779" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1780" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1781" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1782" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1783" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1784" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1785" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1786" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1787" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1788" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1789" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1790" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1791" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1792" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1793" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1794" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1795" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1796" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1797" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1798" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1799" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row15" class="rowGrid"><div id="_1859" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1860" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1861" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1862" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1863" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1864" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1865" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1866" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1867" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1868" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1869" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1870" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1871" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1872" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1873" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1874" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1875" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1876" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1877" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1878" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1879" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1880" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1881" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1882" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1883" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1884" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1885" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1886" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1887" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1888" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1889" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1890" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1891" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1892" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1893" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1894" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1895" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1896" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1897" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1898" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1899" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1900" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1901" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1902" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1903" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1904" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1905" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1906" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1907" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1908" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1909" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1910" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1911" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1912" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1913" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1914" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1915" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1916" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1917" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1918" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1919" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row16" class="rowGrid"><div id="_1979" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1980" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1981" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1982" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1983" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1984" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1985" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1986" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1987" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1988" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1989" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1990" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1991" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1992" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1993" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1994" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1995" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1996" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1997" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1998" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_1999" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2000" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2001" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2002" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2003" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2004" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2005" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2006" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2007" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2008" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2009" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2010" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2011" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2012" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2013" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2014" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2015" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2016" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2017" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2018" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2019" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2020" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2021" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2022" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2023" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2024" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2025" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2026" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2027" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2028" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2029" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2030" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2031" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2032" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2033" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2034" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2035" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2036" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2037" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2038" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2039" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row17" class="rowGrid"><div id="_2099" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2100" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2101" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2102" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2103" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2104" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2105" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2106" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2107" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2108" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2109" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2110" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2111" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2112" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2113" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2114" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2115" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2116" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2117" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2118" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2119" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2120" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2121" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2122" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2123" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2124" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2125" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2126" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2127" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2128" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2129" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2130" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2131" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2132" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2133" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2134" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2135" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2136" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2137" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2138" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2139" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2140" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2141" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2142" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2143" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2144" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2145" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2146" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2147" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2148" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2149" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2150" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2151" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2152" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2153" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2154" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2155" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2156" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2157" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2158" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2159" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row18" class="rowGrid"><div id="_2219" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2220" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2221" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2222" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2223" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2224" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2225" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2226" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2227" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2228" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2229" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2230" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2231" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2232" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2233" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2234" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2235" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2236" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2237" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2238" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2239" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2240" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2241" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2242" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2243" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2244" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2245" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2246" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2247" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2248" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2249" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2250" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2251" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2252" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2253" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2254" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2255" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2256" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2257" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2258" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2259" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2260" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2261" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2262" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2263" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2264" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2265" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2266" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2267" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2268" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2269" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2270" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2271" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2272" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2273" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2274" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2275" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2276" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2277" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2278" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2279" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row19" class="rowGrid"><div id="_2339" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2340" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2341" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2342" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2343" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2344" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2345" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2346" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2347" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2348" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2349" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2350" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2351" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2352" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2353" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2354" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2355" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2356" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2357" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2358" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2359" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2360" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2361" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2362" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2363" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2364" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2365" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2366" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2367" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2368" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2369" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2370" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2371" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2372" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2373" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2374" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2375" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2376" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2377" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2378" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2379" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2380" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2381" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2382" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2383" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2384" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2385" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2386" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2387" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2388" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2389" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2390" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2391" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2392" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2393" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2394" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2395" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2396" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2397" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2398" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2399" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row20" class="rowGrid"><div id="_2459" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2460" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2461" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2462" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2463" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2464" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2465" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2466" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2467" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2468" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2469" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2470" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2471" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2472" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2473" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2474" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2475" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2476" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2477" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2478" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2479" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2480" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2481" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2482" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2483" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2484" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2485" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2486" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2487" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2488" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2489" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2490" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2491" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2492" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2493" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2494" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2495" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2496" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2497" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2498" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2499" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2500" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2501" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2502" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2503" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2504" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2505" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2506" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2507" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2508" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2509" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2510" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2511" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2512" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2513" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2514" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2515" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2516" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2517" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2518" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2519" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row21" class="rowGrid"><div id="_2579" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2580" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2581" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2582" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2583" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2584" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2585" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2586" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2587" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2588" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2589" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2590" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2591" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2592" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2593" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2594" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2595" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2596" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2597" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2598" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2599" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2600" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2601" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2602" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2603" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2604" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2605" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2606" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2607" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2608" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2609" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2610" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2611" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2612" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2613" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2614" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2615" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2616" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2617" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2618" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2619" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2620" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2621" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2622" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2623" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2624" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2625" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2626" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2627" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2628" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2629" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2630" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2631" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2632" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2633" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2634" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2635" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2636" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2637" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2638" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2639" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row22" class="rowGrid"><div id="_2699" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2700" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2701" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2702" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2703" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2704" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2705" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2706" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2707" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2708" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2709" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2710" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2711" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2712" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2713" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2714" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2715" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2716" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2717" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2718" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2719" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2720" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2721" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2722" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2723" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2724" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2725" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2726" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2727" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2728" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2729" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2730" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2731" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2732" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2733" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2734" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2735" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2736" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2737" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2738" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2739" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2740" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2741" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2742" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2743" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2744" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2745" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2746" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2747" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2748" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2749" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2750" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2751" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2752" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2753" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2754" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2755" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2756" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2757" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2758" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2759" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row23" class="rowGrid"><div id="_2819" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2820" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2821" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2822" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2823" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2824" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2825" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2826" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2827" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2828" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2829" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2830" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2831" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2832" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2833" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2834" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2835" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2836" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2837" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2838" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2839" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2840" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2841" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2842" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2843" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2844" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2845" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2846" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2847" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2848" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2849" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2850" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2851" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2852" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2853" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2854" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2855" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2856" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2857" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2858" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2859" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2860" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2861" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2862" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2863" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2864" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2865" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2866" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2867" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2868" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2869" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2870" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2871" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2872" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2873" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2874" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2875" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2876" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2877" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2878" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2879" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div><div id="_row24" class="rowGrid"><div id="_2939" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2940" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2941" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2942" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2943" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2944" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2945" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2946" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2947" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2948" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2949" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2950" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2951" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2952" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2953" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2954" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2955" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2956" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2957" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2958" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2959" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2960" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2961" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2962" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2963" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2964" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2965" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2966" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2967" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2968" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2969" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2970" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2971" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2972" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2973" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2974" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2975" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2976" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2977" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2978" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2979" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2980" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2981" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2982" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2983" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2984" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2985" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2986" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2987" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2988" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2989" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2990" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2991" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2992" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2993" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2994" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2995" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2996" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2997" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2998" class="cell _0" style="width: 25.14px; height: 25.14px;"></div><div id="_2999" class="cell _0" style="width: 25.14px; height: 25.14px;"></div></div></div></div></div>
+<div id="instructions"> 
+  <h1>Instructions</h1>
+  <ol>
+    <li><span>Playing instructions:</span>
+      <p>Player can move in all directions until he hits an obstacle or an enemy, which he has to keep moving into in order to damage or kill it</p>
+      <p>For each enemy killed player gets XP, after a certain amount player's level is upgraded. Higher level upgrades minimum attack damage </p>
+    </li>
+    <li><span>Items:</span>
+      <p>Some items are hidden in chests and some are visible:</p>
+      <ul>
+        <li>key <div class="key"></div>,</li>
+        <li>weapons <div class="knife"></div>, <div class="nunchak"></div>, <div class="shuriken"></div>, <div class="katana"></div></li>
+        <li>first aid kits <div class="firstAid"></div></li>
+      </ul>
+      <p>Weapons upgrade max damage power, first aid heals the player and the key is needed to unlock a pathway to the next dungeon</p>
+    </li>
+    <li><span>Goal:</span>
+      <p>Player wins after killing the Dragon boss in the 4th dungeon</p>
+    </li>
+  </ol>
+  <div id="insert"><button data-reactroot="" class="directionsBtn">Close</button></div>
+</div>
+<footer>Coded by <a href="http://codepen.io/Roky/full/YqGqWg" target="_blank">Roky</a></footer>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.4.5/react-redux.js"></script>
+
+    <script>
+  </script>
+
+  
+  
+
+
+
+ <span style="border-radius: 2px; text-indent: 20px; width: auto; padding: 0px 4px 0px 0px; text-align: center; font: bold 11px/20px &quot;Helvetica Neue&quot;,Helvetica,sans-serif; color: rgb(255, 255, 255); background: rgb(189, 8, 28) url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMzBweCIgd2lkdGg9IjMwcHgiIHZpZXdCb3g9Ii0xIC0xIDMxIDMxIj48Zz48cGF0aCBkPSJNMjkuNDQ5LDE0LjY2MiBDMjkuNDQ5LDIyLjcyMiAyMi44NjgsMjkuMjU2IDE0Ljc1LDI5LjI1NiBDNi42MzIsMjkuMjU2IDAuMDUxLDIyLjcyMiAwLjA1MSwxNC42NjIgQzAuMDUxLDYuNjAxIDYuNjMyLDAuMDY3IDE0Ljc1LDAuMDY3IEMyMi44NjgsMC4wNjcgMjkuNDQ5LDYuNjAxIDI5LjQ0OSwxNC42NjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIj48L3BhdGg+PHBhdGggZD0iTTE0LjczMywxLjY4NiBDNy41MTYsMS42ODYgMS42NjUsNy40OTUgMS42NjUsMTQuNjYyIEMxLjY2NSwyMC4xNTkgNS4xMDksMjQuODU0IDkuOTcsMjYuNzQ0IEM5Ljg1NiwyNS43MTggOS43NTMsMjQuMTQzIDEwLjAxNiwyMy4wMjIgQzEwLjI1MywyMi4wMSAxMS41NDgsMTYuNTcyIDExLjU0OCwxNi41NzIgQzExLjU0OCwxNi41NzIgMTEuMTU3LDE1Ljc5NSAxMS4xNTcsMTQuNjQ2IEMxMS4xNTcsMTIuODQyIDEyLjIxMSwxMS40OTUgMTMuNTIyLDExLjQ5NSBDMTQuNjM3LDExLjQ5NSAxNS4xNzUsMTIuMzI2IDE1LjE3NSwxMy4zMjMgQzE1LjE3NSwxNC40MzYgMTQuNDYyLDE2LjEgMTQuMDkzLDE3LjY0MyBDMTMuNzg1LDE4LjkzNSAxNC43NDUsMTkuOTg4IDE2LjAyOCwxOS45ODggQzE4LjM1MSwxOS45ODggMjAuMTM2LDE3LjU1NiAyMC4xMzYsMTQuMDQ2IEMyMC4xMzYsMTAuOTM5IDE3Ljg4OCw4Ljc2NyAxNC42NzgsOC43NjcgQzEwLjk1OSw4Ljc2NyA4Ljc3NywxMS41MzYgOC43NzcsMTQuMzk4IEM4Ljc3NywxNS41MTMgOS4yMSwxNi43MDkgOS43NDksMTcuMzU5IEM5Ljg1NiwxNy40ODggOS44NzIsMTcuNiA5Ljg0LDE3LjczMSBDOS43NDEsMTguMTQxIDkuNTIsMTkuMDIzIDkuNDc3LDE5LjIwMyBDOS40MiwxOS40NCA5LjI4OCwxOS40OTEgOS4wNCwxOS4zNzYgQzcuNDA4LDE4LjYyMiA2LjM4NywxNi4yNTIgNi4zODcsMTQuMzQ5IEM2LjM4NywxMC4yNTYgOS4zODMsNi40OTcgMTUuMDIyLDYuNDk3IEMxOS41NTUsNi40OTcgMjMuMDc4LDkuNzA1IDIzLjA3OCwxMy45OTEgQzIzLjA3OCwxOC40NjMgMjAuMjM5LDIyLjA2MiAxNi4yOTcsMjIuMDYyIEMxNC45NzMsMjIuMDYyIDEzLjcyOCwyMS4zNzkgMTMuMzAyLDIwLjU3MiBDMTMuMzAyLDIwLjU3MiAxMi42NDcsMjMuMDUgMTIuNDg4LDIzLjY1NyBDMTIuMTkzLDI0Ljc4NCAxMS4zOTYsMjYuMTk2IDEwLjg2MywyNy4wNTggQzEyLjA4NiwyNy40MzQgMTMuMzg2LDI3LjYzNyAxNC43MzMsMjcuNjM3IEMyMS45NSwyNy42MzcgMjcuODAxLDIxLjgyOCAyNy44MDEsMTQuNjYyIEMyNy44MDEsNy40OTUgMjEuOTUsMS42ODYgMTQuNzMzLDEuNjg2IiBmaWxsPSIjYmQwODFjIj48L3BhdGg+PC9nPjwvc3ZnPg==&quot;) no-repeat scroll 3px 50% / 14px 14px; position: absolute; opacity: 1; z-index: 8675309; display: none; cursor: pointer; border: medium none;">Save</span></body></html>
