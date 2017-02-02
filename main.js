@@ -1141,7 +1141,6 @@ var Dungeon = function (_React$Component) {
         _this.cellSize = parseFloat((_this.containerWidth / 61.1).toLocaleString('en', { maximumFractionDigits: 2, useGrouping: false }));
 
         _this.onClick = _this.onClick.bind(_this);
-        _this.onMissClick = _this.onMissClick.bind(_this);
         _this.toggleInstructions = _this.toggleInstructions.bind(_this);
 
         ReactDOM.render(React.createElement(
@@ -1225,10 +1224,6 @@ var Dungeon = function (_React$Component) {
 
     Dungeon.prototype.onClick = function onClick() {
         this.setState({ mapHidden: !this.state.mapHidden });
-    };
-
-    Dungeon.prototype.onMissClick = function onMissClick() {
-        document.getElementById('c').focus();
     };
 
     Dungeon.prototype.toggleInstructions = function toggleInstructions() {
@@ -1351,3 +1346,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                       <Dungeon/>
                   </Provider>, document.getElementById('main'));
 */
+document.addEventListener("click", function(event) {  
+    document.getElementById('c').focus();
+}); 
